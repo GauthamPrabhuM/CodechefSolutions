@@ -6,7 +6,6 @@
      #define ll long long
     using namespace std;
      int flag=0;
-      //static int x=0;
      ll isPrime(ll n)
      {
          ll flag=1;
@@ -18,35 +17,101 @@
 
 
      }
+     float newPrecision(float n, float i)
+{
+    return floor(pow(10,i)*n)/pow(10,i);
+}
+char upper(char s)
+{
+  return (s+'a'-'A');
+}
+void inputarray(ll A[], ll n)
+{
+
+
+  for(ll i=0; i<n; i++)
+    cin>>A[i];
+}
+
+void printarray(ll A[], ll n)
+{
+  for(ll i=0; i<n; i++)
+    cout<<A[i]<<" ";
+}
+
+bool check(string s1, string s2)
+{
+
+ ll j=0;
+ for(ll i=0; i<s2.size(); i++)
+ {
+   if(s1[j]==s2[i])
+    j++;
+  if(j==s1.size())
+    return true;
+
+} 
+return false;
+}
+
+
+/*Lapindrome is defined as a string which when split in the middle, gives two halves having the same characters and same frequency of each character. If there are odd number of characters in the string, we ignore the middle character and check for lapindrome
+*/bool lapindromeornot(string s)
+{
+    int count1[26] = {0};
+    int count2[26] = {0};
+  
+    int n = s.length();
+    if (n == 1)
+        return true;
+
+    for (int i=0,j=n-1; i<j; i++,j--)
+    {
+        count1[s[i]-'a']++;
+          count2[s[j]-'a']++;
+    }
+  
+   
+    for (int i = 0; i<26; i++)
+        if (count1[i] != count2[i])
+            return false;
+  
+    return true;
+}
+  
+
+
+
      
     void solve() 
     {
         string s;
-        cin>>s;
-
-        string s1="";
-        string s2="";
-        ll mid=s.size()/2;
-
-        for(ll i=0; i<s.size()/2; i++)
-         s1.push_back(s[i]);
-       if(s.size()%2!=0)
-            mid++;
-
-         for(ll i=mid; i<s.size(); i++)
-          s2.push_back(s[i]);
-        
-        
-
-        sort(s1.begin(),s1.end());
-        sort(s2.begin(),s2.end());
-
-        if(s1==s2)
+        cin>>s;    
+        int t=lapindromeornot(s);
+        if(t==1)
           cout<<"YES"<<endl;
         else
           cout<<"NO"<<endl;
+   
+  }
 
-    }
+
+
+
+
+    
+    
+
+    
+
+
+       
+
+
+
+
+
+    
  int main()
     {
         ios::sync_with_stdio(0);
@@ -55,14 +120,14 @@
         cout.tie(nullptr);
         cout<<fixed;
         cout<<setprecision(10);
-          //      freopen("input.txt", "r", stdin);
-    //    freopen("output.txt", "w", stdout);
+       // freopen("input.txt", "r", stdin);
+       // freopen("output.txt", "w", stdout);
 
         ll t=1;
-      cin>>t;
+       cin>>t;
         for(int i=1;i<=t;i++)
                     
-            solve();
+           solve();
       
         return 0;
     }
